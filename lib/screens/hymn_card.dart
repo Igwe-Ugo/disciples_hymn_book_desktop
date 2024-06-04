@@ -26,8 +26,7 @@ class HymnCard extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 5, vertical: 2.5),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2.5),
           leading: Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(

@@ -1,12 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
-import 'package:provider/provider.dart';
-
 import 'widget.dart';
+import 'dart:convert';
 import 'common/widget.dart';
 import 'models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 late PageController changePageController;
 
@@ -40,7 +39,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
     setState(() {
       hymnIndex = value - 1;
     });
-    changePageController.jumpToPage(2);
+    changePageController.jumpToPage(3);
   }
 
   @override
@@ -126,10 +125,20 @@ class _DesktopScreenState extends State<DesktopScreen> {
               children: [
                 const PrefaceScreen(),
                 const Settings(),
-                desktopHymnFuture != null ?
-                  HymnDialog(
+                About(fontSize: fontSizeNotifier.fontSize.toDouble(),),
+                if (desktopHymnFuture != null && desktopHymnFuture!.isNotEmpty)
+                  KeyMapDiscipleshipDesktop(
                     hymnaryModel: desktopHymnFuture![hymnIndex],
-                  ) : Container(),
+                    child: HymnDialog(
+                      hymnaryModel: desktopHymnFuture![hymnIndex],
+                    ),
+                  )
+                else
+                  Center(
+                    child: Text(
+                      'No hymns available'.toUpperCase()
+                    ),
+                  ),
               ],
             ),
           ),
@@ -158,7 +167,6 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 child: CircularProgressIndicator.adaptive(),
               ),
             ),
-          //const SizedBox.shrink(),
         ],
       )
     );

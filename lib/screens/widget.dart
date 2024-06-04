@@ -7,3 +7,5 @@ export 'preface.dart';
 export 'settings.dart';
 export 'hymn_dialog.dart';
 export 'expanded_screen.dart';
+export 'key_map_function.dart';
+export 'about_help.dart';

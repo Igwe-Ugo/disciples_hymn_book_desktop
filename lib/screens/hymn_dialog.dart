@@ -74,14 +74,6 @@ class HymnDialog extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          IconButton(
-                            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ExpandedScreen(hymnaryModelExpanded: hymnaryModel, fontSize: fontSizeNotifier.fontSize.toDouble(),))),
-                            tooltip: 'Expand Screen',
-                            icon: Icon(
-                              Icons.expand_outlined,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
                           HymnTune(hymnMusicPath: hymnaryModel.hymnMusic),
                           IconButton(
                             onPressed: (){

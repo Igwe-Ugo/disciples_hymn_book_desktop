@@ -36,7 +36,6 @@ class _PrefaceScreenState extends State<PrefaceScreen> {
             var prefaceItems = data.data as List<PrefaceModel>;
             return SingleChildScrollView(
               child: Card(
-                elevation: 10,
                 child: Container(
                   margin: const EdgeInsets.all(10),
                   child: Column(

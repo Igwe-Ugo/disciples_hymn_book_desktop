@@ -20,73 +20,75 @@ class _SettingsState extends State<Settings> {
     final fontSizeNotifier = Provider.of<FontSizeNotifier>(context);
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 15),
-        children: [
-          ListTile(
-            hoverColor: _hoverColor,
-            leading: Icon(
-              Icons.font_download_outlined,
-              size: fontSizeNotifier.fontSize.toDouble(),
-              color: Theme.of(context).primaryColor,
+      body: Card(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          children: [
+            ListTile(
+              hoverColor: _hoverColor,
+              leading: Icon(
+                Icons.font_download_outlined,
+                size: fontSizeNotifier.fontSize.toDouble(),
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                'Select Font Size',
+                style: TextStyle(
+                  fontSize: fontSizeNotifier.fontSize.toDouble(),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              subtitle: Text(
+                '${fontSizeNotifier.fontSize} dp',
+                style: TextStyle(
+                  fontSize: fontSizeNotifier.fontSize.toDouble()
+                ),
+              ),
+              onTap: () => _showFontSizePickerDialog(context),
             ),
-            title: Text(
-              'Select Font Size',
-              style: TextStyle(
-                fontSize: fontSizeNotifier.fontSize.toDouble(),
-                fontWeight: FontWeight.w700,
+            const SizedBox(height: 10,),
+            ListTile(
+              hoverColor: _hoverColor,
+              leading: Icon(
+                Icons.color_lens_outlined,
+                size: fontSizeNotifier.fontSize.toDouble(),
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                'Select Background Color',
+                style: TextStyle(
+                  fontSize: fontSizeNotifier.fontSize.toDouble(),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              onTap: () => Styles.chooseColor(context),
+            ),
+            const SizedBox(height: 10,),
+            ListTile(
+              leading: Icon(
+                Icons.wb_sunny_outlined,
+                size: fontSizeNotifier.fontSize.toDouble(),
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                'Select Dark Theme',
+                style: TextStyle(
+                  fontSize: fontSizeNotifier.fontSize.toDouble(),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              trailing: Switch(
+                activeColor: Theme.of(context).primaryColor,
+                value: themeChange.darkTheme,
+                onChanged: (value) {
+                  setState(() {
+                    themeChange.darkTheme = value;
+                  });
+                },
               ),
             ),
-            subtitle: Text(
-              '${fontSizeNotifier.fontSize} dp',
-              style: TextStyle(
-                fontSize: fontSizeNotifier.fontSize.toDouble()
-              ),
-            ),
-            onTap: () => _showFontSizePickerDialog(context),
-          ),
-          const SizedBox(height: 10,),
-          ListTile(
-            hoverColor: _hoverColor,
-            leading: Icon(
-              Icons.color_lens_outlined,
-              size: fontSizeNotifier.fontSize.toDouble(),
-              color: Theme.of(context).primaryColor,
-            ),
-            title: Text(
-              'Select Background Color',
-              style: TextStyle(
-                fontSize: fontSizeNotifier.fontSize.toDouble(),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            onTap: () => Styles.chooseColor(context),
-          ),
-          const SizedBox(height: 10,),
-          ListTile(
-            leading: Icon(
-              Icons.wb_sunny_outlined,
-              size: fontSizeNotifier.fontSize.toDouble(),
-              color: Theme.of(context).primaryColor,
-            ),
-            title: Text(
-              'Select Dark Theme',
-              style: TextStyle(
-                fontSize: fontSizeNotifier.fontSize.toDouble(),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            trailing: Switch(
-              activeColor: Theme.of(context).primaryColor,
-              value: themeChange.darkTheme,
-              onChanged: (value) {
-                setState(() {
-                  themeChange.darkTheme = value;
-                });
-              },
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
